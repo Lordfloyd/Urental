@@ -6,7 +6,7 @@
 ## Objectifs techniques
 :ballot_box_with_check: Réalisation d’une interface web utilisateur<br>
 :ballot_box_with_check: Création d’un smart contract<br>
-:ballot_box_with_check: Création d’un objet connecté<br>
+:ballot_box_with_check: Création d’un objet connecté (Axe d'amélioration)<br>
 
 ## Outils technologiques
 **FRONT END**
