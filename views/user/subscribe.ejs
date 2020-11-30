@@ -1,0 +1,41 @@
+<% include ../struct/header.ejs %>
+<% include ../struct/navbar.ejs %>
+<div class="container-fluid margin-top">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-sm my-4">
+            <!-- Affichage des erreurs formulaire -->
+            <% if (errors) { %>
+                <div class="alert alert-danger">
+                    <% errors.forEach(function(error) { %>
+                        <li><%= error %></li>
+                    <% }); %>
+                </div>
+            <% } %>
+            <!-- Formulaire d'inscription -->
+            <form method="post" class="text-center border border-light p-5">
+                <p class="h4 mb-4"><%= subTitle %></p>
+                <div class="form-row mb-4">
+                    <div class="col">
+                        <input type="text" class="form-control" name="firstname" placeholder="<%= formText.firstname %>" value="<%= formValue.firstname %>">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="lastname" placeholder="<%= formText.lastname %>" value="<%= formValue.lastname %>">
+                    </div>
+                </div>
+                <input type="email" class="form-control mb-4" name="email" placeholder="<%= formText.email %>" value="<%= formValue.email %>">
+                <input type="password" class="form-control" name="password" placeholder="<%= formText.password %>" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+                <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                    Au moins 8 caractères
+                </small>
+                <input type="password" class="form-control" name="verifPassword" placeholder="<%= formText.verifPassword %>">
+                <button class="btn btn-orange my-4 btn-block" type="submit"><%= formText.submit %></button>
+                <hr>
+                <p>En cliquant sur <em>S'inscrire</em> tu es d'accord avec <br>
+                    <a href="" target="_blank">les termes de service</a>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+<% include ../struct/footer.ejs %>

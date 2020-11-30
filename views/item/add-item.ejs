@@ -1,0 +1,73 @@
+<% include ../struct/header.ejs %>
+<% include ../struct/navbar.ejs %>
+<div class="container-fluid margin-top">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-sm my-4">
+            <!-- Affichage des erreurs formulaire -->
+            <% if (errors) { %>
+                <div class="alert alert-danger">
+                    <% errors.forEach(function(error) { %>
+                        <li><%= error %></li>
+                    <% }); %>
+                </div>
+            <% } %>
+            <!-- Formulaire d'ajout d'un bien -->
+            <form method="post" class="text-center border border-light p-5">
+                <p class="h4 mb-4"><%= subTitle %></p>
+                <input type="text" class="form-control mb-4" name="name" placeholder="<%= formText.name %>" value="<%= formValue.name %>">
+                <textarea class="form-control mb-4" rows="3" name="description" placeholder="<%= formText.description %>"><%= formValue.description %></textarea>
+                <select name="category" class="browser-default custom-select mb-4">
+                    <% if (formValue.category) { %>
+                        <option disabled><%= formText.category %></option>
+                    <% } else { %>
+                        <option value="null" selected><%= formText.category %></option>
+                    <% } %>
+                    <% if (categories) { %>
+                        <% categories.forEach(function(category) { %>
+                            <% if (category.id == formValue.category) { %>
+                                <option value="<%= category.id %>" selected><%= category.name %></option>
+                            <% } else { %>
+                                <option value="<%= category.id %>"><%= category.name %></option>
+                            <% } %>
+                        <% }); %>
+                    <% } %>
+                </select>
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" class="form-control" name="price" placeholder="<%= formText.price %>" value="<%= formValue.price %>">
+                    </div>
+                    ETH par
+                    <div class="col">
+                        <select name="format" class="browser-default custom-select mb-4">
+                            <% if (formValue.format) { %>
+                                <option disabled><%= formText.format %></option>
+                            <% } else { %>
+                                <option value="null" selected><%= formText.format %></option>
+                            <% } %>
+                            <% if (formValue.format == "heure") { %>
+                                <option value="heure" selected>heure</option>
+                            <% } else { %>
+                                <option value="heure">heure</option>
+                            <% } %>
+                            <% if (formValue.format == "jour") { %>
+                                <option value="jour" selected>jour</option>
+                            <% } else { %>
+                                <option value="jour">jour</option>
+                            <% } %>
+                            <% if (formValue.format == "mois") { %>
+                                <option value="mois" selected>mois</option>
+                            <% } else { %>
+                                <option value="mois">mois</option>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+                <input type="text" class="form-control mb-4" name="caution" placeholder="<%= formText.caution %>" value="<%= formValue.caution %>">
+                <button class="btn btn-orange btn-block" type="submit"><%= formText.submit %></button>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+<% include ../struct/footer.ejs %>

@@ -1,0 +1,45 @@
+<nav class="mb-1 bg-orange navbar navbar-expand-lg navbar-dark fixed-top">
+    <a class="navbar-brand" href="/">URental</a>
+    <!-- Bouton mobile -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+      aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+        <!-- Menu à gauche -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">A propos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/rent">Locations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact</a>
+            </li>
+        </ul>
+        <!-- Menu à droite -->
+        <ul class="navbar-nav ml-auto">
+            <% if (isConnected) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/account">Mon compte</a>
+                </li>
+                <% if (user.email == "baptiste.louyot@gmail.com") { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/">Admin</a>
+                    </li>
+                <% } %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Déconnexion</a>
+                </li>
+            <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Connexion</a>
+                </li>
+            <% } %>
+        </ul> 
+    </div>
+</nav>

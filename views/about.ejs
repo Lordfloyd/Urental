@@ -1,0 +1,43 @@
+<% include struct/header.ejs %>
+<% include struct/navbar.ejs %>
+<div class="container-fluid margin-top text-center">
+    <div class="row">
+        <!-- A propos -->
+        <div class="col-sm my-4">
+            <h1><%= subTitle %></h1>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-4 mt-4">
+                        <h2>Propriétaire</h2>
+                        <hr>
+                        <img class="img-fluid" src="/assets/img/proprietaire.jpg">
+                        <hr>
+                        <p>Dans la logique de Airbnb, il décide de vouloir louer son objet/bien, 
+                            il va se rendre sur l’interface utilisateur pour créer le contrat de location à l’aide d’un formulaire. 
+                            Afin de terminer le processus il faudra coupler l’objet ou le bien avec un système connecté.</p>
+                    </div>
+                    <div class="col-sm-4 mt-4">
+                        <h2>Locataire</h2>
+                        <hr>
+                        <img class="img-fluid" src="/assets/img/locataire.jpg">
+                        <hr>
+                        <p>Pour le locataire dès qu’il a besoin d’un objet il lui faut se rendre sur le market de 
+                            l’interface et de louer l’objet qu’il souhaite. Il doit ensuite payer la somme de location ainsi 
+                            que la caution avec notre « stable coin ». Une fois le paiement effectué l’objet pourra se 
+                            déverrouiller avec l’ID du locataire et le système connecté.</p>
+                    </div>
+                    <div class="col-sm-4 mt-4">
+                        <h2>Système</h2>
+                        <hr>
+                        <img class="img-fluid" src="/assets/img/systeme.jpg">
+                        <hr>
+                        <p>Le smart contract remplira la fonction de l’employé de la société de location. 
+                            Création, modification et suppression du contrat de location.
+                            Gestion utilisateur sur l’interface web liée au smart contract pour les infos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include struct/footer.ejs %>

@@ -1,0 +1,84 @@
+<% include ../struct/header.ejs %>
+<% include ../struct/navbar.ejs %>
+<div class="container-fluid margin-top">
+    <div class="row">
+        <!-- Photo du bien -->
+        <div class="col-sm mt-4">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">                                   
+        </div>
+        <!-- Informations du bien -->
+        <div class="col-sm mt-4">
+            <div class="card text-center">
+                <h5 class="card-header h5 bg-orange">Informations</h5>
+                <div class="card-body text-left">
+                    <ul class="list-group">
+                        <li class="list-group-item"><b>Nom</b> : <%= item.name %></li>
+                        <li class="list-group-item"><b>Description</b> : <%= item.description %></li>
+                        <li class="list-group-item"><b>Prix / Format</b> : <%= item.price %>ETH / <%= item.format %></li>
+                        <li class="list-group-item"><b>Caution</b> : <%= item.caution %>ETH</li>
+                        <li class="list-group-item"><b>Propriétaire</b> : <%= owner.firstname %> <%= owner.lastname %><br>
+                            (<%= owner.email %>)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm my-4">
+            <!-- Affichage des erreurs formulaire -->
+            <% if (errors) { %>
+                <div class="alert alert-danger">
+                    <% errors.forEach(function(error) { %>
+                        <li><%= error %></li>
+                    <% }); %>
+                </div>
+            <% } %>
+            <!-- Formulaire de location -->
+            <form method="post" class="text-center border border-light p-5">
+                <p class="h4 mb-4"><%= subTitle %></p>
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" class="form-control" name="period" placeholder="<%= formText.period %>" value="<%= formValue.period %>">
+                    </div>
+                    <div class="col">
+                        <select name="format" class="browser-default custom-select mb-4">
+                            <% if (formValue.format) { %>
+                                <option disabled><%= formText.format %></option>
+                            <% } else { %>
+                                <option value="null" selected><%= formText.format %></option>
+                            <% } %>
+                            <% if (formValue.format == "heure") { %>
+                                <option value="heure" selected>heure</option>
+                            <% } else { %>
+                                <option value="heure">heure</option>
+                            <% } %>
+                            <% if (formValue.format == "jour") { %>
+                                <option value="jour" selected>jour</option>
+                            <% } else { %>
+                                <option value="jour">jour</option>
+                            <% } %>
+                            <% if (formValue.format == "mois") { %>
+                                <option value="mois" selected>mois</option>
+                            <% } else { %>
+                                <option value="mois">mois</option>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+                <div class="md-form">
+                    <input type="date" id="inputMDEx" class="form-control" name="startTime" value="<%= formValue.startTime %>">
+                    <label for="inputMDEx"><%= formText.startTime %></label>
+                </div>
+
+                <input type="hidden" name="idItem" value="<%= item.id %>">
+                <input type="hidden" name="idOwner" value="<%= item.id_owner %>">
+                <input type="hidden" name="price" value="<%= item.price %>">
+                <input type="hidden" name="caution" value="<%= item.caution %>">
+                
+                <button class="btn btn-orange my-4 btn-block" type="submit"><%= formText.submit %></button>
+                <hr>
+                <p>Les paiements sont mis sous séquestre le temps de la location
+                    pour garantir le bon fonctionnement de la location 
+            </form>
+        </div>
+    </div>
+</div>
+<% include ../struct/footer.ejs %>

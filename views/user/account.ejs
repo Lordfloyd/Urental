@@ -1,0 +1,145 @@
+<% include ../struct/header.ejs %>
+<% include ../struct/navbar.ejs %>
+<div class="container-fluid text-center margin-top">
+    <div class="row">
+        <!-- Informations et actions -->
+        <div class="col-sm-4 mt-4">
+            <div class="card mb-4">
+                <h5 class="card-header h5 bg-orange"><%= subTitleInfos %></h5>
+                <div class="card-body">
+                    <ul class="list-group text-left">
+                        <li class="list-group-item">
+                            <div class="md-v-line"></div><i class="fas fa-user mr-5"></i><%= user.firstname %> <%= user.lastname %>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="md-v-line"></div><i class="fas fa-envelope mr-5"></i><%= user.email %>
+                        </li>
+                        <li class="list-group-item text-center">
+                            <% if (user.address_ethereum) { %>
+                                <i class="fab fa-ethereum"></i> <b><%= user.address_ethereum %></b>
+                            <% } else { %>
+                                <i class="fab fa-ethereum"></i> Adresse ethereum à définir<br>
+                                <small>Pour ajouter une adresse ethereum, cliquer sur "Modifier mes informations"</small>
+                            <% } %>
+                        </li>
+                    </ul>
+                    <a href="/modify-account" class="btn btn-orange mt-4">Modifier mes informations</a>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <h5 class="card-header h5 bg-orange"><%= subTitleActions %></h5>
+                <div class="card-body">
+                    <a href="/add-item" class="btn btn-orange">Ajouter un bien</a>
+                    <a href="/rent" class="btn btn-orange">Faire une location</a>
+                </div>
+            </div>
+        </div>
+        <!-- Liste de tous ses biens et locations -->
+        <div class="col-sm-8 my-4">
+            <h1><%= subTitle %></h1>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active bg-orange" id="rents-tab" data-toggle="tab" href="#rents" role="tab" aria-controls="rents"
+                    aria-selected="false"><%= subTitleRents %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bg-orange" id="items-tab" data-toggle="tab" href="#items" role="tab" aria-controls="items"
+                    aria-selected="true"><%= subTitleItems %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bg-orange" id="rents-owner-tab" data-toggle="tab" href="#rents-owner" role="tab" aria-controls="rents-owner"
+                    aria-selected="false"><%= subTitleRentsOwner %></a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="rents" role="tabpanel" aria-labelledby="rents-tab">
+                    <table class="table mt-4">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Id item</th>
+                                <th scope="col">Date de début</th>
+                                <th scope="col">Période</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (rents) { %>
+                                <% rents.forEach(function(rent) { %>
+                                    <tr>
+                                        <th scope="row"><%= rent.id %></th>
+                                        <th scope="row"><a href="/item/<%= rent.id_item %>"><%= rent.id_item %></a></th>
+                                        <th scope="row"><%= rent.start_time %></th>
+                                        <th scope="row"><%= rent.period %></th>
+                                        <th scope="row">
+                                            <form method="post" action="/launchRent">
+                                                <input type="hidden" name="rentHash" value="<%= rent.hash %>">
+                                                <button type="submit" class="btn btn-green"><i class="fas fa-power-off"></i></button>
+                                            </form>
+                                            <a href="/delete-rent/<%= rent.id %>" class="btn btn-orange"><i class="fas fa-times"></i></a>
+                                        </th>
+                                    </tr>
+                                <% }); %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="items" role="tabpanel" aria-labelledby="item-tab">
+                    <% if (items) { %>
+                        <div class="container-fluid mb-4">
+                            <div class="row">
+                                <% items.forEach(function(item) { %>
+                                    <div class="col-sm-4 mt-4">
+                                        <div class="card">
+                                            <div class="view overlay">
+                                            <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">
+                                            <a href="#!">
+                                                <div class="mask rgba-white-slight"></div>
+                                            </a>
+                                            </div>
+                                            <div class="card-body">
+                                                <h4 class="card-title"><%= item.name %></h4>
+                                                <a href="/modify-item/<%= item.id %>" class="btn btn-orange"><i class="fas fa-edit"></i></a>
+                                                <a href="/delete-item/<%= item.id %>" class="btn btn-orange"><i class="fas fa-times"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% }); %>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+                <div class="tab-pane fade" id="rents-owner" role="tabpanel" aria-labelledby="rents-owner-tab">    
+                    <table class="table mt-4">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Id item</th>
+                                <th scope="col">Date de début</th>
+                                <th scope="col">Période</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (rentsOwner) { %>
+                                <% rentsOwner.forEach(function(rentOwner) { %>
+                                    <tr>
+                                        <th scope="row"><%= rentOwner.id %></th>
+                                        <th scope="row"><a href="/item/<%= rentOwner.id_item %>"><%= rentOwner.id_item %></a></th>
+                                        <th scope="row"><%= rentOwner.start_time %></th>
+                                        <th scope="row"><%= rentOwner.period %></th>
+                                        <th scope="row">
+                                            <a href="#" class="btn btn-green"><i class="fas fa-check"></i></a>
+                                            <a href="#" class="btn btn-orange"><i class="fas fa-times"></i></a>
+                                        </th>
+                                    </tr>
+                                <% }); %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../struct/footer.ejs %>

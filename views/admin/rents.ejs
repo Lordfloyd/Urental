@@ -1,0 +1,38 @@
+<% include struct/header.ejs %>
+<% include struct/navbar.ejs %>
+<div class="container-fluid margin-top text-center">
+    <div class="row">
+        <!-- gestion des locations -->
+        <div class="col-sm my-4">
+            <h2><%= subTitle %></h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id item</th>
+                        <th scope="col">Id renter</th>
+                        <th scope="col">Date de début</th>
+                        <th scope="col">Période</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (rents) { %>
+                        <% rents.forEach(function(rent) { %>
+                            <tr>
+                                <th scope="row"><%= rent.id %></th>
+                                <th scope="row"><%= rent.id_item %></th>
+                                <th scope="row"><%= rent.id_renter %></th>
+                                <th scope="row"><%= rent.start_time %></th>
+                                <th scope="row"><%= rent.period %></th>
+                                <th scope="row">
+                                    <a href="/admin/delete-rent/<%= rent.id %>" class="btn btn-orange"><i class="fas fa-times"></i></a>
+                                </th>
+                            </tr>
+                        <% }); %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<% include struct/footer.ejs %>

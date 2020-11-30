@@ -1,0 +1,79 @@
+<% include struct/header.ejs %>
+<% include struct/navbar.ejs %>
+<div class="container-fluid margin-top text-center">
+    <div class="row">
+        <!-- L'équipe -->
+        <div class="col-sm-8 my-4">
+            <h1><%= subTitle %></h1>
+            <div class="container-fluid mt-4">
+                <div class="row">
+                    <div class="col-sm-4 mb-4">
+                        <div class="card">
+                            <div class="view overlay">
+                            <img class="card-img-top" src="/assets/img/baptiste.jpg" alt="Card image cap">
+                            <a href="#!">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                            </div>
+                            <div class="card-body">
+                                <h3>Baptiste Louyot</h3>
+                                <p>Développeur<br> GFI Informatique</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 mb-4">
+                        <div class="card">
+                            <div class="view overlay">
+                            <img class="card-img-top" src="/assets/img/paul.jpg" alt="Card image cap">
+                            <a href="#!">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                            </div>
+                            <div class="card-body">
+                                <h3>Paul Mussy</h3>
+                                <p>Développeur<br> GFI Informatique</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 mb-4">
+                        <div class="card">
+                            <div class="view overlay">
+                            <img class="card-img-top" src="/assets/img/juan.jpg" alt="Card image cap">
+                            <a href="#!">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                            </div>
+                            <div class="card-body">
+                                <h3>Juan Jose Urrego</h3>
+                                <p>Développeur<br> Finelia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Formulaire de contact -->
+        <div class="col-sm-4 my-4">
+            <form class="border border-light p-5" action="#!">
+                <p class="h4 mb-4"><%= subTitleContact %></p>
+                <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Nom (*)">
+                <input type="email" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Email (*)">
+                <label>Sujet</label>
+                <select class="browser-default custom-select mb-4">
+                    <option value="" disabled>Choisir une option</option>
+                    <option value="1" selected>Informations</option>
+                    <option value="2">Prolèmes</option>
+                </select>
+                <div class="form-group">
+                    <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Message"></textarea>
+                </div>
+                <div class="custom-control custom-checkbox mb-4">
+                    <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
+                    <label class="custom-control-label" for="defaultContactFormCopy">Envoyer moi une copie du message</label>
+                </div>
+                <button class="btn btn-orange btn-block" type="submit">Envoyer</button>
+            </form>
+        </div>
+    </div>
+</div>
+<% include struct/footer.ejs %>

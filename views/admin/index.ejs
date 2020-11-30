@@ -1,0 +1,52 @@
+<% include struct/header.ejs %>
+<% include struct/navbar.ejs %>
+<div class="container-fluid margin-top text-center">
+    <div class="row">
+        <div class="col-sm mt-4">
+            <div class="card">
+                <div class="view overlay">
+                <img class="card-img-top" src="/assets/img/users.png" alt="Card image cap">
+                <a href="/admin/users">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title"><%= subTitleUsers %></h4>
+                    <p>Gestion des utilisateurs</p>
+                    <a href="/admin/users" class="btn btn-orange"><i class="fas fa-plus"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm mt-4">
+            <div class="card">
+                <div class="view overlay">
+                <img class="card-img-top" src="/assets/img/items.jpg" alt="Card image cap">
+                <a href="/admin/items">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title"><%= subTitleItems %></h4>
+                    <p>Gestion des biens</p>
+                    <a href="/admin/items" class="btn btn-orange"><i class="fas fa-plus"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm my-4">
+            <div class="card">
+                <div class="view overlay">
+                <img class="card-img-top" src="/assets/img/rents.jpg" alt="Card image cap">
+                <a href="/admin/rents">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title"><%= subTitleRents %></h4>
+                    <p>Gestion des locations</p>
+                    <a href="/admin/rents" class="btn btn-orange"><i class="fas fa-plus"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include struct/footer.ejs %>

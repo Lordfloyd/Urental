@@ -1,0 +1,66 @@
+<% include struct/header.ejs %>
+<% include struct/navbar.ejs %>
+<div class="container-fluid margin-top text-center">
+    <div class="row">
+        <!-- gestion des catégories -->
+        <div class="col-sm-3 mt-4">
+            <h2><%= subTitleCategories %> <a href="/admin/add-category" class="btn btn-orange"><i class="fas fa-plus"></i></a></h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (categories) { %>
+                        <% categories.forEach(function(category) { %>
+                            <tr>
+                                <th scope="row"><%= category.id %></th>
+                                <td><%= category.name %></td>
+                                <td>
+                                    <a href="/admin/modify-category/<%= category.id %>" class="btn btn-orange"><i class="fas fa-edit"></i></a>
+                                    <a href="/admin/delete-category/<%= category.id %>" class="btn btn-orange"><i class="fas fa-times"></i></a>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <!-- gestion des biens -->
+        <div class="col-sm-9 my-4">
+            <h2><%= subTitleItems %></h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Prix / Format</th>
+                        <th scope="col">Caution</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (items) { %>
+                        <% items.forEach(function(item) { %>
+                            <tr>
+                                <th scope="row"><%= item.id %></th>
+                                <td><%= item.name %></td>
+                                <td><%= item.description %></td>
+                                <td><%= item.price %>ETH / <%= item.format %></td>
+                                <td><%= item.caution %>ETH</td>
+                                <td>
+                                    <a href="delete-item/<%= item.id %>" class="btn btn-orange"><i class="fas fa-times"></i></a>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<% include struct/footer.ejs %>
